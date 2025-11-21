@@ -220,6 +220,7 @@ const Index = () => {
               <Coffee className="text-primary" size={32} />
               <h3 className="font-display text-2xl font-bold">Thee Kulture</h3>
               <p className="text-muted-foreground">Where Flavor Meets Heritage</p>
+            <p className="text-muted-foreground">© 2025 KEY ENT. Built with LOVE and modern web technologies</p>
             </div>
           </div>
         </div>

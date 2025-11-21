@@ -49,7 +49,8 @@ export const menuData = {
     { name: "Chips", price: 250 },
     { name: "Chicken Wings", price: 500, description: "6 pieces" },
     { name: "Spring Rolls", price: 200, description: "2 pieces" },
-    { name: "Hot Dogs", price: 200 },
+    { name: "Hot Dog", price: 200 },
+    { name: "Burger", price: 350 },
     { name: "Eggs", price: 150 },
   ],
   

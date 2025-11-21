@@ -2,70 +2,10 @@ import { Phone, Mail, MapPin, Instagram, Send } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
-
-const emailSchema = z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" });
+import { useForm, ValidationError } from '@formspree/react'; // Changed import
 
 const ContactSection = () => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (isSubmitting) return;
-    
-    const trimmedEmail = email.trim().toLowerCase();
-    const result = emailSchema.safeParse(trimmedEmail);
-    
-    if (!result.success) {
-      toast({
-        title: "Invalid email",
-        description: result.error.errors[0].message,
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const { error } = await supabase
-        .from("newsletter_subscribers")
-        .insert({ email: trimmedEmail });
-
-      if (error) {
-        if (error.code === "23505") {
-          toast({
-            title: "Already subscribed",
-            description: "This email is already on our newsletter list.",
-            variant: "destructive",
-          });
-        } else {
-          throw error;
-        }
-      } else {
-        toast({
-          title: "Thank you for subscribing!",
-          description: "We'll keep you updated with our latest news.",
-        });
-        setEmail("");
-      }
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
-      toast({
-        title: "Subscription failed",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const [state, handleSubmit] = useForm("xqajzaoq"); //  Formspree form ID
 
   return (
     <section className="py-12 sm:py-16 bg-gradient-to-b from-accent/5 to-card border-t-2 border-primary/20">
@@ -81,10 +21,7 @@ const ContactSection = () => {
               <Phone className="text-white" size={20} />
             </div>
             <h3 className="font-display text-base sm:text-lg font-semibold mb-2">Phone</h3>
-            <a 
-              href="tel:0111468845" 
-              className="text-muted-foreground hover:text-primary transition-smooth"
-            >
+            <a href="tel:0111468845" className="text-muted-foreground hover:text-primary transition-smooth">
               011 146 8845
             </a>
             <p className="text-sm text-muted-foreground mt-1">Management</p>
@@ -96,10 +33,7 @@ const ContactSection = () => {
               <Mail className="text-white" size={20} />
             </div>
             <h3 className="font-display text-base sm:text-lg font-semibold mb-2">Email</h3>
-            <a 
-              href="mailto:thee.kultureklub@gmail.com" 
-              className="text-muted-foreground hover:text-primary transition-smooth break-all"
-            >
+            <a href="mailto:thee.kultureklub@gmail.com" className="text-muted-foreground hover:text-primary transition-smooth break-all">
               thee.kultureklub@gmail.com
             </a>
           </Card>
@@ -110,12 +44,7 @@ const ContactSection = () => {
               <MapPin className="text-white" size={20} />
             </div>
             <h3 className="font-display text-base sm:text-lg font-semibold mb-2">Location</h3>
-            <a 
-              href="https://maps.app.goo.gl/Wopz5GhDRHNko77n7" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-smooth text-sm block"
-            >
+            <a href="https://maps.app.goo.gl/Wopz5GhDRHNko77n7" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth text-sm block">
               <p className="font-medium">Thee Kulture Café & Bistro</p>
               <p>Ralph Bunche Rd, Nairobi</p>
               <p>PR44+99 Nairobi</p>
@@ -129,13 +58,7 @@ const ContactSection = () => {
             </div>
             <h3 className="font-display text-base sm:text-lg font-semibold mb-2">Follow Us</h3>
             <div className="flex justify-center mt-4">
-              <a 
-                href="https://www.instagram.com/theekulture/?utm_source=ig_web_button_share_sheet" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-smooth"
-                aria-label="Instagram"
-              >
+              <a href="https://www.instagram.com/theekulture/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth" aria-label="Instagram">
                 <Instagram size={24} />
               </a>
             </div>
@@ -151,23 +74,38 @@ const ContactSection = () => {
           <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             Subscribe to our newsletter for updates on events and special offers
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="flex-1 border-2 border-primary/30 focus:border-primary h-11 sm:h-12 text-sm sm:text-base"
-            />
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="kulture-gradient text-white hover:shadow-lg transition-smooth h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Subscribing..." : "Subscribe"}
-            </Button>
-          </form>
+          
+          {state.succeeded ? (
+            <div className="text-green-600 font-semibold py-4 animate-fade-in">
+              🎉 Thanks for subscribing! We'll keep you updated.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <div className="flex-1">
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                  className="w-full border-2 border-primary/30 focus:border-primary h-11 sm:h-12 text-sm sm:text-base"
+                />
+                <ValidationError 
+                  prefix="Email" 
+                  field="email"
+                  errors={state.errors}
+                  className="text-red-500 text-sm mt-1 text-left"
+                />
+              </div>
+              <Button 
+                type="submit" 
+                disabled={state.submitting}
+                className="kulture-gradient text-white hover:shadow-lg transition-smooth h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {state.submitting ? "Subscribing..." : "Subscribe"}
+              </Button>
+            </form>
+          )}
         </div>
       </div>
     </section>
