@@ -6,6 +6,13 @@ import MenuCategory from "@/components/MenuCategory";
 import { menuData } from "@/data/menuData";
 import { Coffee, Croissant, Sunrise, Cake, UtensilsCrossed, Baby, Leaf, Droplet, Pizza, Martini, Wine, Beer, Sparkles, GlassWater, Star, Users } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// Import images from assets folder
+import interior1 from "@/assets/interior-1.jpg";
+import foodDisplay from "@/assets/food-display.jpg";
+import community from "@/assets/community.jpg";
+import barArea from "@/assets/bar-area.jpg";
+import seating from "@/assets/seating.jpg";
+import atmosphere from "@/assets/atmosphere.jpg";
 
 const Index = () => {
   return (
@@ -173,6 +180,100 @@ const Index = () => {
       <ContactSection />
 
       <WeeklyExperience />
+      
+      
+      {/* Gallery Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6 transition-smooth animate-fade-in mb-12">
+          <h2 className="font-display text-4xl md:text-5xl font-bold kulture-gradient bg-clip-text text-transparent">
+            Experience Thee Kulture
+          </h2>
+          <p className="text-lg text-foreground/80 leading-relaxed">
+            Step inside our sanctuary of flavor, culture, and connection
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Image 1 */}
+          <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={interior1} 
+              alt="Thee Kulture interior ambiance"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">Our Space</p>
+                <p className="text-sm text-white/80 mt-1">Where comfort meets culture</p>
+              </div>
+            </div>
+          </div>
+
+          
+
+          {/* Image 3 */}
+          <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={community} 
+              alt="Community gathering at Thee Kulture"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">Our Community</p>
+                <p className="text-sm text-white/80 mt-1">Connection through culture</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Image 4 */}
+          <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={barArea} 
+              alt="Bar and beverage station"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">The Bar</p>
+                <p className="text-sm text-white/80 mt-1">Craft beverages & cocktails</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Image 5 */}
+          <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={seating} 
+              alt="Comfortable seating arrangements"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">Relax & Connect</p>
+                <p className="text-sm text-white/80 mt-1">Cozy corners for conversation</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Image 6 */}
+          <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={atmosphere} 
+              alt="Evening atmosphere at Thee Kulture"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">The Vibe</p>
+                <p className="text-sm text-white/80 mt-1">Where moments become memories</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
       
       <footer className="mt-20 border-t border-border/50 bg-card/50 py-12">
         <div className="container mx-auto px-4">
