@@ -208,7 +208,19 @@ const Index = () => {
               </div>
             </div>
           </div>
-
+ <div className="group relative overflow-hidden rounded-lg border border-border bg-card hover:border-primary transition-all duration-300 aspect-square">
+            <img 
+              src={foodDisplay} 
+              alt="Thee Kulture interior ambiance"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <p className="font-display text-lg sm:text-xl font-semibold text-white">Our Space</p>
+                <p className="text-sm text-white/80 mt-1">Where comfort meets culture</p>
+              </div>
+            </div>
+          </div>
           
 
           {/* Image 3 */}
