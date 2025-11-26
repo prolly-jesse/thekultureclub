@@ -8,8 +8,6 @@
 
 ## Project info
 
-> > > > > > > c63669bacf7efcf82df945fc11c020ce560ac9b6
-
 This project is built with:
 
 - Vite
@@ -25,5 +23,4 @@ This project is built with:
 
 =======
 
-> > > > > > > c63669bacf7efcf82df945fc11c020ce560ac9b6
 ```
