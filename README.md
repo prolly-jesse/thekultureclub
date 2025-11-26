@@ -17,10 +17,5 @@ This project is built with:
 - Tailwind CSS
 
   TO view live project visit theekulture.vercel.app
-  <<<<<<< HEAD
-
-```
 
 =======
-
-```
